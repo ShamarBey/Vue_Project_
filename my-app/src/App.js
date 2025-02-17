@@ -2,15 +2,14 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
-	const arr = [1, 2, 3, 4, 5];
-	
-	return <ul>
-		<li>{arr[0]}</li>
-		<li>{arr[1]}</li>
-		<li>{arr[2]}</li>
-		<li>{arr[3]}</li>
-		<li>{arr[4]}</li>
-	</ul>;
+	const obj = { name: 'john', surname: 'smit' };
+
+	return (
+	  <p>
+		name: <span>{obj.name}</span>, <br />
+		surname: <span>{obj.surname}</span>,
+	  </p>
+	);
 }
 
 export default App;
