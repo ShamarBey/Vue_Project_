@@ -1,0 +1,22 @@
+.commonInput {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 5px;
+  }
+  
+  .input1 {
+    composes: commonInput;
+    background-color: #f0f8ff; /* Светло-голубой */
+  }
+  
+  .input2 {
+    composes: commonInput;
+    background-color: #f5f5dc; /* Бежевый */
+  }
+  
+  .input3 {
+    composes: commonInput;
+    background-color: #e6ffe6; /* Светло-зеленый */
+  }
