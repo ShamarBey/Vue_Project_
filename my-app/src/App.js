@@ -1,27 +1,65 @@
-import React from 'react';
-import { v4 as uuidv4 } from 'react-uuid'; 
+import React, { useState } from 'react';
 
 function App() {
-  // Функция для генерации уникального id
-  const id = () => uuidv4();
+  // Стейты для имени, фамилии, возраста и бана пользователя
+  const [name, setName] = useState('Иван');
+  const [surname, setSurname] = useState('Иванов');
+  const [age, setAge] = useState(25);
+  const [isBanned, setIsBanned] = useState(false);
 
-  // Массив пользователей с уникальными id
-  const users = [
-    { id: id(), name: 'user1', surn: 'surn1', age: 30 },
-    { id: id(), name: 'user2', surn: 'surn2', age: 31 },
-    { id: id(), name: 'user3', surn: 'surn3', age: 32 },
-  ];
+  // Функции для изменения имени и фамилии
+  const changeName = () => {
+    setName('Пётр');
+  };
+
+  const changeSurname = () => {
+    setSurname('Петров');
+  };
+
+  // Функции для бана и разбана пользователя
+  const banUser = () => {
+    setIsBanned(true);
+  };
+
+  const unbanUser = () => {
+    setIsBanned(false);
+  };
+
+  // Функции для изменения возраста
+  const increaseAge = () => {
+    setAge(age + 1);
+  };
+
+  const decreaseAge = () => {
+    setAge(age - 1);
+  };
 
   return (
     <div>
-      <h2>Список пользователей</h2>
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>
-            {user.name} {user.surn}, возраст: {user.age} (ID: {user.id})
-          </li>
-        ))}
-      </ul>
+      {/* Отображение данных пользователя */}
+      <h2>Данные пользователя</h2>
+      <p>Имя: {name}</p>
+      <p>Фамилия: {surname}</p>
+      <p>Возраст: {age}</p>
+      <p>Статус: {isBanned ? 'Забанен' : 'Активен'}</p>
+
+      {/* Кнопки для изменения имени и фамилии */}
+      <div>
+        <button onClick={changeName}>Изменить имя</button>
+        <button onClick={changeSurname}>Изменить фамилию</button>
+      </div>
+
+      {/* Кнопки для бана и разбана пользователя */}
+      <div>
+        <button onClick={banUser}>Забанить</button>
+        <button onClick={unbanUser}>Разбанить</button>
+      </div>
+
+      {/* Кнопки для изменения возраста */}
+      <div>
+        <button onClick={increaseAge}>Увеличить возраст</button>
+        <button onClick={decreaseAge}>Уменьшить возраст</button>
+      </div>
     </div>
   );
 }
