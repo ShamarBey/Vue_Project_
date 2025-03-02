@@ -1,33 +1,15 @@
 import React from 'react';
-import styled from 'styled-components';
+import styles from './Inputs.module.css'; // Импорт стилей из CSS Modules
 
-// Создание стилизованных компонентов
-const DIVA = styled.div`
-  width: 150px;
-  height: 150px;
-  background-color: yellow;
-  border: 2px solid black;
-`;
-
-const DIVB = styled(DIVA)`
-  background-color: green;
-  border-width: 3px;
-`;
-
-const Container = styled.div`
-  display: flex;
-  gap: 10px;
-  padding: 20px;
-`;
-
-function Block1() {
+function Inputs() {
   return (
-    <Container>
-      <DIVA />
-      <DIVB />
-      <DIVA />
-    </Container>
+    <div>
+      <h1>Приложение с инпутами</h1>
+      <input type="text" className={styles.input1} placeholder="Инпут 1" />
+      <input type="text" className={styles.input2} placeholder="Инпут 2" />
+      <input type="text" className={styles.input3} placeholder="Инпут 3" />
+    </div>
   );
 }
 
-export default Block1;
+export default Inputs;
