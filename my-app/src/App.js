@@ -1,15 +1,25 @@
 import React from 'react';
 
+// Функция для нахождения суммы цифр числа
+function getDigitsSum(number) {
+  return String(number)
+    .split('')
+    .reduce((sum, digit) => sum + Number(digit), 0);
+}
+
 function App() {
-  const age = 19; // Здесь может быть любое число
+  const isAuth = true; // Здесь может быть true или false
+  const number = 123; // Число, сумму цифр которого нужно найти
+  const sum = getDigitsSum(number); // Вычисляем сумму цифр
 
   return (
     <div>
-      {age > 18 ? (
-        <p>Вам уже есть 18 лет. Добро пожаловать!</p>
-      ) : (
-        <p>Вам ещё нет 18 лет. Доступ ограничен.</p>
-      )}
+      {/* Условный рендеринг для isAuth */}
+      {isAuth && <p>вы авторизованы</p>}
+      {!isAuth && <p>пожалуйста, авторизуйтесь</p>}
+
+      {/* Вывод суммы цифр числа */}
+      <p>Сумма цифр числа {number} равна {sum}.</p>
     </div>
   );
 }
