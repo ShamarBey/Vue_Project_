@@ -1,11 +1,41 @@
 import React from 'react';
-import { styles } from './styles'; // Импорт стилей из styles.js
 
 function ButtonComponent() {
   return (
-    <div style={styles.container}>
-      <button style={styles.primaryButton}>Кнопка 1</button>
-      <button style={styles.secondaryButton}>Кнопка 2</button>
+    <div
+      style={{
+        padding: '20px',
+        border: '1px solid #ccc',
+        borderRadius: '5px',
+        marginBottom: '20px',
+      }}
+    >
+      <button
+        style={{
+          padding: '10px 20px',
+          margin: '5px',
+          border: 'none',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          backgroundColor: 'blue',
+          color: 'white',
+        }}
+      >
+        Кнопка 1
+      </button>
+      <button
+        style={{
+          padding: '10px 20px',
+          margin: '5px',
+          border: 'none',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          backgroundColor: 'gray',
+          color: 'white',
+        }}
+      >
+        Кнопка 2
+      </button>
     </div>
   );
 }
