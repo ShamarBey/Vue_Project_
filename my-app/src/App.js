@@ -1,120 +1,187 @@
 import React, { useState } from 'react';
 
 function App() {
-  // Задание 1: Выпадающий список городов
-  const cities = ['Москва', 'Санкт-Петербург', 'Новосибирск', 'Екатеринбург', 'Казань'];
-  const [selectedCity, setSelectedCity] = useState('');
+  // Задание 1: Добавление нового элемента в массив
+  const [items, setItems] = useState([1, 2, 3]);
 
-  // Задание 2: Возрастные группы
-  const ageGroups = ['0-12 лет', '13-17 лет', '18-25 лет', 'старше 25 лет'];
-  const [selectedAgeGroup, setSelectedAgeGroup] = useState('');
+  const addItem = () => {
+    setItems([...items, items.length + 1]);
+  };
 
-  // Задание 3: Радиокнопки для выбора значения
-  const [selectedRadio, setSelectedRadio] = useState('');
+  // Задание 2: Добавление текста из инпута в список
+  const [inputText, setInputText] = useState('');
+  const [listItems, setListItems] = useState(['Элемент 1', 'Элемент 2']);
 
-  // Задание 4: Любимый язык программирования
-  const programmingLanguages = ['JavaScript', 'Python', 'Java'];
-  const [favoriteLanguage, setFavoriteLanguage] = useState('');
+  const addListItem = () => {
+    if (inputText.trim()) {
+      setListItems([...listItems, inputText]);
+      setInputText('');
+    }
+  };
 
-  // Задание 5: Среднее арифметическое массива
-  const [numbers, setNumbers] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9]);
-  const average = numbers.reduce((sum, num) => sum + num, 0) / numbers.length;
+  // Задание 3: Возведение числа в квадрат
+  const [numbers, setNumbers] = useState([1, 2, 3, 4, 5]);
 
-  // Задание 6: Объект с датой
-  const [date, setDate] = useState({
-    year: 2025,
-    month: 12,
-    day: 31,
-  });
+  const squareNumber = (index) => {
+    const newNumbers = [...numbers];
+    newNumbers[index] = newNumbers[index] ** 2;
+    setNumbers(newNumbers);
+  };
 
-  // Функция для получения дня недели
-  const getDayOfWeek = (year, month, day) => {
-    const days = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
-    const date = new Date(year, month - 1, day);
-    return days[date.getDay()];
+  // Задание 4: Удаление элемента из списка
+  const removeItem = (index) => {
+    const newListItems = listItems.filter((_, i) => i !== index);
+    setListItems(newListItems);
+  };
+
+  // Задание 5: Перенос текста li в инпут
+  const [editInput, setEditInput] = useState('');
+
+  const editItem = (text) => {
+    setEditInput(text);
+  };
+
+  // Задание 6: Добавление нового элемента в массив
+  const [newItems, setNewItems] = useState([10, 20, 30]);
+
+  const addNewItem = () => {
+    setNewItems([...newItems, newItems.length * 10 + 10]);
+  };
+
+  // Задание 7: Три инпута и добавление новой li
+  const [input1, setInput1] = useState('');
+  const [input2, setInput2] = useState('');
+  const [input3, setInput3] = useState('');
+  const [multiInputList, setMultiInputList] = useState([]);
+
+  const addMultiInputItem = () => {
+    if (input1.trim() && input2.trim() && input3.trim()) {
+      setMultiInputList([...multiInputList, { input1, input2, input3 }]);
+      setInput1('');
+      setInput2('');
+      setInput3('');
+    }
+  };
+
+  // Задание 8: Удаление элемента из списка с тремя инпутами
+  const removeMultiInputItem = (index) => {
+    const newMultiInputList = multiInputList.filter((_, i) => i !== index);
+    setMultiInputList(newMultiInputList);
+  };
+
+  // Задание 9: Перенос данных объекта в инпуты
+  const editMultiInputItem = (item) => {
+    setInput1(item.input1);
+    setInput2(item.input2);
+    setInput3(item.input3);
+  };
+
+  // Задание 10: Показ полного описания продукта
+  const [products] = useState([
+    { id: 1, name: 'Продукт 1', description: 'Описание продукта 1' },
+    { id: 2, name: 'Продукт 2', description: 'Описание продукта 2' },
+    { id: 3, name: 'Продукт 3', description: 'Описание продукта 3' },
+  ]);
+  const [showDescription, setShowDescription] = useState(null);
+
+  const toggleDescription = (id) => {
+    setShowDescription(showDescription === id ? null : id);
   };
 
   return (
     <div>
-      {/* Задание 1: Выпадающий список городов */}
+      {/* Задание 1: Добавление нового элемента в массив */}
       <h2>Задание 1</h2>
-      <select value={selectedCity} onChange={(e) => setSelectedCity(e.target.value)}>
-        <option value="">Выберите город</option>
-        {cities.map((city, index) => (
-          <option key={index} value={city}>
-            {city}
-          </option>
+      <ul>
+        {items.map((item, index) => (
+          <li key={index}>{item}</li>
         ))}
-      </select>
-      <p>Выбранный город: {selectedCity}</p>
+      </ul>
+      <button onClick={addItem}>Добавить элемент</button>
 
-      {/* Задание 2: Возрастные группы */}
+      {/* Задание 2: Добавление текста из инпута в список */}
       <h2>Задание 2</h2>
-      <select value={selectedAgeGroup} onChange={(e) => setSelectedAgeGroup(e.target.value)}>
-        <option value="">Выберите возрастную группу</option>
-        {ageGroups.map((group, index) => (
-          <option key={index} value={group}>
-            {group}
-          </option>
+      <input value={inputText} onChange={(e) => setInputText(e.target.value)} placeholder="Введите текст" />
+      <button onClick={addListItem}>Добавить в список</button>
+      <ul>
+        {listItems.map((item, index) => (
+          <li key={index}>
+            {item}
+            <button onClick={() => removeItem(index)}>Удалить</button>
+          </li>
         ))}
-      </select>
-      <p>Выбранная возрастная группа: {selectedAgeGroup}</p>
+      </ul>
 
-      {/* Задание 3: Радиокнопки для выбора значения */}
+      {/* Задание 3: Возведение числа в квадрат */}
       <h2>Задание 3</h2>
-      <label>
-        <input type="radio" name="radio" value="Вариант 1" onChange={(e) => setSelectedRadio(e.target.value)} />
-        Вариант 1
-      </label>
-      <label>
-        <input type="radio" name="radio" value="Вариант 2" onChange={(e) => setSelectedRadio(e.target.value)} />
-        Вариант 2
-      </label>
-      <label>
-        <input type="radio" name="radio" value="Вариант 3" onChange={(e) => setSelectedRadio(e.target.value)} />
-        Вариант 3
-      </label>
-      <p>Выбранный вариант: {selectedRadio}</p>
+      <ul>
+        {numbers.map((number, index) => (
+          <li key={index} onClick={() => squareNumber(index)}>
+            {number}
+          </li>
+        ))}
+      </ul>
 
-      {/* Задание 4: Любимый язык программирования */}
+      {/* Задание 4: Удаление элемента из списка */}
       <h2>Задание 4</h2>
-      {programmingLanguages.map((language) => (
-        <label key={language}>
-          <input
-            type="radio"
-            name="language"
-            value={language}
-            onChange={(e) => setFavoriteLanguage(e.target.value)}
-          />
-          {language}
-        </label>
-      ))}
-      <p>
-        Ваш любимый язык программирования: {favoriteLanguage}
-        {favoriteLanguage === 'JavaScript' && ' — Отличный выбор!'}
-      </p>
+      <ul>
+        {listItems.map((item, index) => (
+          <li key={index}>
+            {item}
+            <button onClick={() => removeItem(index)}>Удалить</button>
+          </li>
+        ))}
+      </ul>
 
-      {/* Задание 5: Среднее арифметическое массива */}
+      {/* Задание 5: Перенос текста li в инпут */}
       <h2>Задание 5</h2>
-      {numbers.map((num, index) => (
-        <input
-          key={index}
-          type="number"
-          value={num}
-          onChange={(e) => {
-            const newNumbers = [...numbers];
-            newNumbers[index] = parseInt(e.target.value, 10) || 0;
-            setNumbers(newNumbers);
-          }}
-        />
-      ))}
-      <p>Среднее арифметическое: {average.toFixed(2)}</p>
+      <input value={editInput} onChange={(e) => setEditInput(e.target.value)} placeholder="Редактировать" />
+      <ul>
+        {listItems.map((item, index) => (
+          <li key={index} onClick={() => editItem(item)}>
+            {item}
+          </li>
+        ))}
+      </ul>
 
-      {/* Задание 6: Объект с датой */}
+      {/* Задание 6: Добавление нового элемента в массив */}
       <h2>Задание 6</h2>
-      <p>
-        Дата: {date.day}.{date.month}.{date.year} ({getDayOfWeek(date.year, date.month, date.day)})
-      </p>
+      <ul>
+        {newItems.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+      <button onClick={addNewItem}>Добавить элемент</button>
+
+      {/* Задание 7: Три инпута и добавление новой li */}
+      <h2>Задание 7</h2>
+      <input value={input1} onChange={(e) => setInput1(e.target.value)} placeholder="Введите значение 1" />
+      <input value={input2} onChange={(e) => setInput2(e.target.value)} placeholder="Введите значение 2" />
+      <input value={input3} onChange={(e) => setInput3(e.target.value)} placeholder="Введите значение 3" />
+      <button onClick={addMultiInputItem}>Добавить</button>
+      <ul>
+        {multiInputList.map((item, index) => (
+          <li key={index}>
+            {item.input1}, {item.input2}, {item.input3}
+            <button onClick={() => removeMultiInputItem(index)}>Удалить</button>
+            <button onClick={() => editMultiInputItem(item)}>Редактировать</button>
+          </li>
+        ))}
+      </ul>
+
+      {/* Задание 10: Показ полного описания продукта */}
+      <h2>Задание 10</h2>
+      {products.map((product) => (
+        <div key={product.id}>
+          <p>
+            {product.name}
+            <button onClick={() => toggleDescription(product.id)}>
+              {showDescription === product.id ? 'Скрыть описание' : 'Показать описание'}
+            </button>
+          </p>
+          {showDescription === product.id && <p>{product.description}</p>}
+        </div>
+      ))}
     </div>
   );
 }
