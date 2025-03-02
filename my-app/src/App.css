@@ -36,3 +36,56 @@
     transform: rotate(360deg);
   }
 }
+/* Общие стили для тени и других свойств */
+.shadowed {
+  box-shadow: rgba(50, 50, 50, 0.2) 0 5px 5px 0;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Общие стили для инпутов */
+.commonInput {
+  composes: shadowed;
+  width: 100%;
+  max-width: 300px;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+/* Стили для текстового поля */
+.textInput {
+  composes: commonInput;
+  background-color: #f9f9f9;
+}
+
+/* Стили для числового поля */
+.numberInput {
+  composes: commonInput;
+  background-color: #f0f8ff;
+}
+
+/* Стили для email поля */
+.emailInput {
+  composes: commonInput;
+  background-color: #fff0f5;
+}
+
+/* Стили для контейнера */
+.container {
+  text-align: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Стили для вывода данных */
+.output {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: inline-block;
+}
